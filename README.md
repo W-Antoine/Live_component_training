@@ -44,6 +44,14 @@ Puis ouvre [http://localhost:8000](http://localhost:8000).
 
 ---
 
+## Stack frontend
+
+**Bootstrap 5** est inclus et disponible dans tous les templates Twig. Tu peux utiliser librement ses classes (`btn`, `container`, `card`, `d-flex`, etc.) pour mettre en forme tes composants sans écrire de CSS custom.
+
+Le CSS custom dans `assets/styles/app.css` est chargé après Bootstrap — tes surcharges ont la priorité.
+
+---
+
 ## Structure
 
 ```
