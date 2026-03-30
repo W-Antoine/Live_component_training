@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }} — Layan Training{% endblock %}
+
+{% block body %}
+<div class="learning-page">
+    <nav class="learning-nav">
+        <a href="{{ path('home') }}">← Accueil</a>
+        {% if file == 'tasks' %}
+            <a href="{{ path('learning', {file: 'questionnaire'}) }}">Questionnaire →</a>
+        {% else %}
+            <a href="{{ path('learning', {file: 'tasks'}) }}">Tâches →</a>
+        {% endif %}
+    </nav>
+
+    <div class="markdown-body" data-controller="markdown" data-raw="{{ content|e('html_attr') }}"></div>
+</div>
+{% endblock %}

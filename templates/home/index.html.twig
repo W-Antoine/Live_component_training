@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Layan Training — Live Component{% endblock %}
+
+{% block body %}
+<div class="landing">
+    <header class="hero">
+        <h1>Layan Training</h1>
+        <p class="subtitle">Apprendre Symfony UX Live Component step by step</p>
+    </header>
+
+    <main class="cards">
+        <a href="{{ path('live_component') }}" class="card">
+            <span class="card-icon">⚡</span>
+            <h2>Démo Live</h2>
+            <p>Le composant Counter en action</p>
+        </a>
+
+        <div class="card card--static">
+            <span class="card-icon">📋</span>
+            <h2>Questionnaire</h2>
+            <p><code>learning/questionnaire.md</code></p>
+        </div>
+
+        <div class="card card--static">
+            <span class="card-icon">💻</span>
+            <h2>Tâches de coding</h2>
+            <p><code>learning/tasks.md</code></p>
+        </div>
+    </main>
+</div>
+{% endblock %}

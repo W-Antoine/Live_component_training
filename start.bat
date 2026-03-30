@@ -1,0 +1,6 @@
+@echo off
+echo Starting PHP server on http://localhost:8000 ...
+start "PHP Server" php -S localhost:8000 -t public
+
+echo Starting asset watcher...
+npm run watch

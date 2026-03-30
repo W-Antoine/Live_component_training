@@ -1,0 +1,140 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: #f4f4f5;
+    color: #18181b;
+    min-height: 100vh;
+}
+
+/* Landing */
+
+.landing {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.hero .subtitle {
+    margin-top: 0.75rem;
+    color: #71717a;
+    font-size: 1.1rem;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.card {
+    background: #fff;
+    border: 1px solid #e4e4e7;
+    border-radius: 12px;
+    padding: 1.75rem;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.15s, border-color 0.15s;
+}
+
+a.card:hover {
+    border-color: #6366f1;
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.12);
+}
+
+.card--static {
+    cursor: default;
+    opacity: 0.8;
+}
+
+.card-icon {
+    font-size: 1.75rem;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.card h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.card p {
+    font-size: 0.875rem;
+    color: #71717a;
+}
+
+.card code {
+    font-size: 0.8rem;
+    background: #f4f4f5;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+}
+
+/* Live component page */
+
+.container {
+    max-width: 600px;
+    margin: 4rem auto;
+    padding: 0 1.5rem;
+}
+
+.container h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+/* Learning page */
+
+.learning-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+}
+
+.learning-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+}
+
+.learning-nav a {
+    color: #6366f1;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.learning-nav a:hover {
+    text-decoration: underline;
+}
+
+.markdown-body h1 { font-size: 2rem; font-weight: 700; margin: 0 0 1.5rem; letter-spacing: -0.02em; }
+.markdown-body h2 { font-size: 1.35rem; font-weight: 600; margin: 2.5rem 0 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid #e4e4e7; }
+.markdown-body h3 { font-size: 1.1rem; font-weight: 600; margin: 2rem 0 0.75rem; color: #6366f1; }
+.markdown-body p { line-height: 1.7; margin-bottom: 0.75rem; }
+.markdown-body ul, .markdown-body ol { padding-left: 1.5rem; margin-bottom: 0.75rem; }
+.markdown-body li { line-height: 1.7; margin-bottom: 0.25rem; }
+.markdown-body code { font-family: ui-monospace, monospace; font-size: 0.875em; background: #f4f4f5; padding: 0.15rem 0.4rem; border-radius: 4px; }
+.markdown-body pre { background: #18181b; color: #e4e4e7; padding: 1.25rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem; }
+.markdown-body pre code { background: none; padding: 0; font-size: 0.85rem; }
+.markdown-body blockquote { border-left: 3px solid #6366f1; margin: 0.5rem 0; padding: 0.5rem 1rem; background: #f5f5ff; border-radius: 0 6px 6px 0; color: #3f3f46; }
+.markdown-body blockquote p { margin: 0; }
+.markdown-body hr { border: none; border-top: 1px solid #e4e4e7; margin: 2rem 0; }
+.markdown-body strong { font-weight: 600; }
