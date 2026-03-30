@@ -1,32 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Layan Training — Live Component{% endblock %}
+{% block title %}Layan Training — Stimulus & Live Component{% endblock %}
 
 {% block body %}
 <div class="landing">
     <header class="hero">
         <h1>Layan Training</h1>
-        <p class="subtitle">Apprendre Symfony UX Live Component step by step</p>
+        <p class="subtitle">Apprendre Stimulus et Symfony UX Live Component step by step</p>
     </header>
 
     <main class="cards">
-        <a href="{{ path('live_component') }}" class="card">
-            <span class="card-icon">⚡</span>
-            <h2>Démo Live</h2>
-            <p>Le composant Counter en action</p>
-        </a>
-
-        <div class="card card--static">
+        <a href="{{ path('learning', {file: 'questionnaire'}) }}" class="card">
             <span class="card-icon">📋</span>
             <h2>Questionnaire</h2>
-            <p><code>learning/questionnaire.md</code></p>
-        </div>
+            <p>Questions de compréhension</p>
+        </a>
 
-        <div class="card card--static">
+        <a href="{{ path('learning', {file: 'tasks'}) }}" class="card">
             <span class="card-icon">💻</span>
             <h2>Tâches de coding</h2>
-            <p><code>learning/tasks.md</code></p>
-        </div>
+            <p>Exercices step by step</p>
+        </a>
+
     </main>
 </div>
 {% endblock %}
