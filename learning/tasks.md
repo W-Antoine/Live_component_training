@@ -20,6 +20,9 @@ Fais-les dans l'ordre.
 - `connect()` se déclenche quand ? Et si tu supprimes l'élément du DOM ?
 - Stimulus a d'autres hooks de cycle de vie que `connect()`.
 
+**Résultat attendu :**
+Le fichier `assets/controllers/hello_controller.js` existe déjà — pas besoin d'en créer un nouveau. Connecte-le à un élément dans un template. Au chargement, cet élément doit afficher le texte injecté par `connect()`. Expérimente aussi le déclenchement d'une méthode du controller au clic.
+
 ---
 
 ### Tâche S2 — Targets et Actions
@@ -32,6 +35,10 @@ Crée un controller `toggle` qui permet de montrer/cacher un élément.
 - En Stimulus, les `targets` permettent de référencer des éléments DOM depuis le controller sans faire de `querySelector`. Cherche comment les déclarer dans le controller et les marquer dans le HTML.
 - `data-action` peut écouter n'importe quel événement natif du navigateur, pas seulement `click`.
 - Le controller ne doit pas connaître le contenu de ce qu'il cache — il doit être réutilisable.
+- Faire attention au scope ! S'assurer que les variables sont connus par le controller. (indice : déclaration du "data-controller").
+
+**Résultat attendu :**
+Un fichier `assets/controllers/toggle_controller.js` à créer. Dans le HTML, un bouton et un élément à cacher sont liés au même controller. Cliquer sur le bouton alterne la visibilité de l'élément cible. Le controller ne doit pas contenir de texte en dur — il doit fonctionner quel que soit le contenu qu'il cache.
 
 ---
 
@@ -46,6 +53,9 @@ Crée un controller `countdown` qui affiche un compte à rebours. La valeur de d
 - Un callback se déclenche automatiquement quand une value change. Comment s'appelle-t-il ?
 - `setInterval` et `clearInterval` seront utiles. Où les initialiser et les nettoyer dans le cycle de vie ?
 
+**Résultat attendu :**
+Un fichier `countdown_controller.js`. Dans le HTML, un attribut sur le conteneur passe la valeur de départ (ex: 10). Le compte à rebours démarre automatiquement, décrémente chaque seconde, et affiche un message à 0. Si tu veux aller plus loin : un bouton reset qui repart de la valeur initiale.
+
 ---
 
 ### Tâche S4 — Outlets (communication entre controllers)
@@ -58,6 +68,9 @@ Crée un controller `logger` qui affiche un historique de messages, et connecte 
 - Les `outlets` sont la façon Stimulus de référencer un autre controller depuis le sien. C'est l'équivalent Stimulus des events inter-composants.
 - Un outlet donne accès à l'instance du controller cible et à son élément.
 - Réfléchis à qui dépend de qui : lequel des deux controllers doit déclarer l'outlet ?
+
+**Résultat attendu :**
+Un fichier `logger_controller.js`. Dans le HTML, les deux controllers coexistent sur la même page. Chaque fois que `toggle` est déclenché, une ligne apparaît dans le `logger` (ex: "toggled at 14:32:01"). Les deux controllers ne se connaissent pas directement — c'est l'outlet qui fait le lien.
 
 ---
 
@@ -77,6 +90,12 @@ Recrée le `CounterComponent` : un compteur avec les boutons +, -, Reset.
 - La configuration dans `twig_component.yaml` a son importance. Quel namespace doit-il pointer ?
 - Pour l'afficher dans une page, tu as besoin d'un controller Symfony et d'un template qui l'inclut.
 
+**Résultat attendu :**
+- `src/Component/CounterComponent.php` — classe PHP avec l'attribut Live Component, le trait, et une propriété `$count`
+- `templates/components/counter.html.twig` — template du composant avec les boutons et l'affichage du count
+- Une route Symfony et son template qui inclut le composant via `<twig:counter />`
+- Les boutons +, - et Reset fonctionnent sans rechargement de page
+
 ---
 
 ### Tâche L2 — LiveProps et état
@@ -88,6 +107,9 @@ Ajoute un `step` configurable au `CounterComponent` : le pas d'incrément vient 
 **Pistes :**
 - Toutes les propriétés ne sont pas forcément des `LiveProp`. Quelle est la différence entre une prop normale et une `LiveProp` ?
 - `step` doit pouvoir être passé depuis `<twig:counter />` mais ne doit pas être modifiable depuis le navigateur. Comment le protéger ?
+
+**Résultat attendu :**
+`CounterComponent.php` modifié. `<twig:counter step="2" />` dans le template parent fait incrémenter de 2 à chaque clic. Changer `step` dans le HTML change le comportement sans toucher au PHP.
 
 ---
 
@@ -102,6 +124,9 @@ Ajoute une action `setCount` qui permet de définir directement la valeur du com
 - Une `#[LiveAction]` peut recevoir des arguments. D'où viennent-ils et comment les typer ?
 - Comment déclencher une action depuis un `<form>` plutôt qu'un `<button>` ?
 
+**Résultat attendu :**
+Un input + bouton "Aller à" dans le template du composant. Soumettre le formulaire met `$count` à la valeur saisie, sans rechargement de page.
+
 ---
 
 ### Tâche L4 — Two-way binding
@@ -114,6 +139,9 @@ Crée un composant `search` dont l'input est lié en temps réel à une prop PHP
 - `data-model` est le point d'entrée. Sur quel élément le met-on ? Quelle valeur lui donne-t-on ?
 - Une `LiveProp` exposée au navigateur nécessite une option supplémentaire. Laquelle et pourquoi ?
 - Ouvre les DevTools Network pendant que tu tapes. Qu'est-ce qui déclenche les requêtes ?
+
+**Résultat attendu :**
+`src/Component/SearchComponent.php` + `templates/components/search.html.twig`. Un input dont la valeur est reflétée en dessous en temps réel (côté serveur). Les requêtes AJAX sont visibles dans les DevTools à chaque frappe.
 
 ---
 
@@ -128,6 +156,9 @@ Sur le composant `search`, expérimente les différentes façons de contrôler q
 - `data-model` accepte une syntaxe étendue pour choisir l'événement déclencheur.
 - Il existe un attribut pour retarder l'envoi après que l'utilisateur arrête de taper.
 
+**Résultat attendu :**
+Le composant `search` modifié : les requêtes ne partent plus à chaque frappe mais après un délai ou sur un événement précis. Comportement visible dans les DevTools Network.
+
 ---
 
 ### Tâche L6 — Computed properties
@@ -139,6 +170,9 @@ Ajoute au `CounterComponent` une valeur dérivée de `$count` affichée dans le 
 **Pistes :**
 - Live Component expose automatiquement au template les méthodes qui suivent une certaine convention de nommage.
 - Cette valeur est recalculée à chaque re-rendu. Est-ce un problème ?
+
+**Résultat attendu :**
+`CounterComponent.php` modifié avec une méthode supplémentaire. Le template affiche la valeur calculée (ex: `$count * 2`, ou "pair/impair") qui se met à jour à chaque clic sans nouvelle `LiveProp`.
 
 ---
 
@@ -153,6 +187,12 @@ Crée un composant `color-palette` qui affiche une liste de couleurs fournie par
 - Cette méthode reçoit à la fois les props passées depuis Twig ET les services injectés par le container. Dans quel ordre Symfony les résout-il ?
 - Les couleurs doivent-elles être une `LiveProp` ? Pourquoi ou pourquoi pas ?
 
+**Résultat attendu :**
+- `src/Service/ColorService.php` — service qui retourne une liste de couleurs
+- `src/Component/ColorPaletteComponent.php` — composant avec un `mount()` qui reçoit le service
+- `templates/components/color-palette.html.twig` — affiche la liste
+- Les couleurs s'affichent dans la page sans être stockées comme `LiveProp`
+
 ---
 
 ### Tâche L8 — Actions avec arguments
@@ -164,6 +204,9 @@ Crée un composant `todo-list` avec des items supprimables. Chaque suppression d
 **Pistes :**
 - Une `#[LiveAction]` peut recevoir des arguments. D'où viennent-ils ?
 - Stimulus params (`data-live-[param]-param`) sont le mécanisme sous-jacent. Comment les utiliser dans une boucle Twig ?
+
+**Résultat attendu :**
+`src/Component/TodoListComponent.php` + `templates/components/todo-list.html.twig`. Une liste d'items avec un bouton "Supprimer" sur chacun. Cliquer sur un bouton retire l'item correspondant sans toucher aux autres.
 
 ---
 
@@ -177,3 +220,6 @@ Le composant `todo-list` doit notifier un composant `notification` à chaque sup
 - Live Component a un système d'événements propre, distinct des événements JavaScript natifs.
 - Un composant peut émettre, un autre peut écouter. Cherche les attributs PHP correspondants.
 - Les deux composants sont indépendants dans le template — aucun n'est enfant de l'autre.
+
+**Résultat attendu :**
+`src/Component/NotificationComponent.php` + `templates/components/notification.html.twig`. Les deux composants sont placés côte à côte dans le même template parent. Supprimer un todo fait apparaître un message dans le composant notification, sans que `todo-list` connaisse `notification`.
